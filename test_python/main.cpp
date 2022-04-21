@@ -109,6 +109,28 @@ auto no_complex_overload_reg(const double& a)
     return a;
 }
 
+// Operator Examples
+
+xt::pyarray<double> array_addition(xt::pyarray<double>& m, xt::pyarray<double>& n)
+{
+    return m + n;
+}
+
+xt::pyarray<double> array_subtraction(xt::pyarray<double>& m, xt::pyarray<double>& n)
+{
+    return m - n;
+}
+
+xt::pyarray<double> array_multiplication(xt::pyarray<double>& m, xt::pyarray<double>& n)
+{
+    return m * n;
+}
+
+xt::pyarray<double> array_division(xt::pyarray<double>& m, xt::pyarray<double>& n)
+{
+    return m / n;
+}
+
 // Vectorize Examples
 
 int add(int i, int j)
@@ -309,6 +331,11 @@ PYBIND11_MODULE(xtensor_python_test, m)
 
     m.def("readme_example1", readme_example1);
     m.def("readme_example2", xt::pyvectorize(readme_example2));
+
+    m.def("array_addition", array_addition);
+    m.def("array_subtraction", array_subtraction);
+    m.def("array_multiplication", array_multiplication);
+    m.def("array_division", array_division);
 
     m.def("vectorize_example1", xt::pyvectorize(add));
 
